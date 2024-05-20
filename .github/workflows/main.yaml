@@ -1,0 +1,25 @@
+name: Reusable Plan and Apply
+
+on: workflow_call
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  run-tf:
+    runs-on: ubuntu-latest
+
+    steps: 
+
+    - name: 'Plan Run'
+      run: |
+        terraform init
+        # terraform plan -input=false -var-file=./secrets.tfvars
+        terraform plan -input=false 
+      working-directory: terraform
+
+    # - name: 'Apply Run'
+    #   run: |
+    #     terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
+    #   working-directory: terraform
