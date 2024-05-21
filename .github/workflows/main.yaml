@@ -32,7 +32,6 @@ jobs:
         # TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
         touch secrets.tfvars
         cat > secrets.tfvars << EOF
-        test
         ${{ secrets.TF_vars }}
         EOF
       working-directory: terraform
@@ -54,8 +53,8 @@ jobs:
     - name: 'Plan Run'
       run: |
         terraform init
-        # terraform plan -input=false -var-file=./secrets.tfvars
-        terraform plan -input=false 
+        terraform plan -input=false -var-file=./secrets.tfvars
+        # terraform plan -input=false 
       working-directory: terraform
 
     # - name: 'Apply Run'
