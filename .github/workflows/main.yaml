@@ -32,12 +32,6 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - run: |
-        echo "tf_vars"
-        echo $TF_vars
-        echo "secrets"
-        echo ${{ secrets.TF_vars }}
-
     - name: 'Create Terraform Secrets tfvars File'
       run: |
         # TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
