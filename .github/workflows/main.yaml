@@ -25,6 +25,21 @@ jobs:
         echo "secrets"
         echo ${{ secrets.TF_vars }}
 
+    - name: 'Create Terraform Secrets tfvars File'
+      run: |
+        TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
+        touch secrets.tfvars
+        cat > secrets.tfvars << EOF
+        test
+        ${{ secrets.TF_vars }}
+        EOF
+      working-directory: terraform
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: secrets
+        path: terraform/secrets.tfvars
+
     - run: |
         for i in $TF_vars; do
             echo $i
