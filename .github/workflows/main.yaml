@@ -20,6 +20,12 @@ jobs:
     - uses: actions/checkout@v4
 
     - run: |
+        echo "tf_vars"
+        echo $TF_vars
+        echo "secrets"
+        echo ${{ secrets.TF_vars }}
+
+    - run: |
         for i in $TF_vars; do
             echo $i
             # i=$(echo $i | sed 's/=.*//g')=$(echo ${i#*=} | base64 -di | base64 -di)
