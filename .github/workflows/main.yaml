@@ -45,17 +45,18 @@ jobs:
         text=$(echo $(cat terraform/secrets.tfvars))
         IFS=' ' read -r -a test_array <<< "$text"
         echo "${test_array[@]}"
-        for i in "${test_array[@]}"; 
+        for i in "${!test_array[@]}"; 
         do
-            if [[ "$i" == *"\\"* ]]; then
+            if [[ "test_array[$i]" == *"\\"* ]]; then
               echo "Its there!"
               # searchstring="\\"
               # rest=${i#*$searchstring}
               # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
               bar=${i// //}
               echo $bar
+              test_array[$i]=$bar
             fi
-            echo $i
+            echo test_array[$i]
             echo "here"
         done
 
