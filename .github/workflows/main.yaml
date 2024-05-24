@@ -42,11 +42,18 @@ jobs:
 
     - name: 'Test secrets.tfvars'
       run: |
-        for i in "${secrets.TF_vars{@}";
-        do
-            echo "here"
-            echo $i
+        for i in $TF_vars; do
+          echo $i
+          echo "here"
+          # i=$(echo $i | sed 's/=.*//g')=$(echo ${i#*=} | base64 -di | base64 -di)
+          # echo ::add-mask::${i#*=}
+          # printf '%s\n' "$i" >> $GITHUB_ENV
         done
+        # for i in "${secrets.TF_vars{@}";
+        # do
+        #     echo "here"
+        #     echo $i
+        # done
 
     - uses: actions/upload-artifact@v4
       with:
