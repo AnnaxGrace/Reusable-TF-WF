@@ -42,7 +42,7 @@ jobs:
 
     - name: 'Test secrets.tfvars'
       run: |
-        for i in $TF_vars; do
+        for i in ${{ secrets.TF_vars }}; do
           echo $i
           echo "here"
           # i=$(echo $i | sed 's/=.*//g')=$(echo ${i#*=} | base64 -di | base64 -di)
