@@ -49,9 +49,11 @@ jobs:
         do
             if [[ "$i" == *"\\"* ]]; then
               echo "Its there!"
-              searchstring="\\"
-              rest=${i#*$searchstring}
-              echo $(( ${#i} - ${#rest} - ${#searchstring} ))
+              # searchstring="\\"
+              # rest=${i#*$searchstring}
+              # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
+              bar=${i// //}
+              echo $bar
             fi
             echo $i
             echo "here"
