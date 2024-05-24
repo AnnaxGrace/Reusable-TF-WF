@@ -44,6 +44,10 @@ jobs:
       run: |
         array=${{ secrets.TF_vars}}
         echo $array
+        for i in ${array[a]}; do
+            echo $i
+            echo "here"
+        done
         # for i in ${{ secrets.TF_vars }}; do
         #   echo $i
         #   echo "here"
