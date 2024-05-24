@@ -44,7 +44,7 @@ jobs:
       run: |
         array=${{ secrets.TF_vars }}
         echo "straight"
-        echo ${{ secrets.TF_vars }}
+        echo $(${{ secrets.TF_vars }})
         echo "array"
         echo $array
         for i in "${array[@]}"; do
