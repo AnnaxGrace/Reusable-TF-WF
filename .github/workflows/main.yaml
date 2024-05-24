@@ -42,6 +42,7 @@ jobs:
 
     - name: 'Test secrets.tfvars'
       run: |
+        echo $(cat terraform/secrets.tfvars)
         array=${{ secrets.TF_vars }}
         echo "straight"
         echo $(${{ secrets.TF_vars }})
