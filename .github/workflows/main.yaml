@@ -47,6 +47,9 @@ jobs:
         echo "${test_array[@]}"
         for i in "${test_array[@]}"; 
         do
+            if [[ $string == *"\"* ]]; then
+              echo "It's there!"
+            fi
             echo $i
             echo "here"
         done
