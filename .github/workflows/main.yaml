@@ -42,13 +42,15 @@ jobs:
 
     - name: 'Test secrets.tfvars'
       run: |
-        for i in ${{ secrets.TF_vars }}; do
-          echo $i
-          echo "here"
+        array=${{ secrets.TF_vars}}
+        echo $array
+        # for i in ${{ secrets.TF_vars }}; do
+        #   echo $i
+        #   echo "here"
           # i=$(echo $i | sed 's/=.*//g')=$(echo ${i#*=} | base64 -di | base64 -di)
           # echo ::add-mask::${i#*=}
           # printf '%s\n' "$i" >> $GITHUB_ENV
-        done
+        # done
         # for i in "${secrets.TF_vars{@}";
         # do
         #     echo "here"
