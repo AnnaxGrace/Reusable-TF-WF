@@ -49,15 +49,18 @@ jobs:
         do
             if [[ "$i" == *"\\"* ]]; then
               echo "Its there!"
+              searchstring="\"
+              rest=${i#*$searchstring}
+              echo $(( ${#i} - ${#rest} - ${#searchstring} ))
             fi
             echo $i
             echo "here"
         done
 
-    - uses: actions/upload-artifact@v4
-      with:
-        name: secrets
-        path: terraform/secrets.tfvars
+    # - uses: actions/upload-artifact@v4
+    #   with:
+    #     name: secrets
+    #     path: terraform/secrets.tfvars
 
     - name: 'Plan Run'
       run: |
