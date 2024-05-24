@@ -42,8 +42,9 @@ jobs:
 
     - name: 'Test secrets.tfvars'
       run: |
-        for i in $(secrets.TF_vars);
+        for i in "${secrets.TF_vars{@}";
         do
+            echo "here"
             echo $i
         done
 
