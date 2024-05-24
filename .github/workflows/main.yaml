@@ -42,7 +42,9 @@ jobs:
 
     - name: 'Test secrets.tfvars'
       run: |
-        echo $(cat terraform/secrets.tfvars)
+        text=$(echo $(cat terraform/secrets.tfvars))
+        IFS=' ' read -r -a test_array <<< "$text"
+        echo "${test_array[@]}"
         array=$(cat terraform/secrets.tfvars)
         # echo "straight"
         # echo $(${{ secrets.TF_vars }})
