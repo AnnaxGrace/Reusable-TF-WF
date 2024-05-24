@@ -45,12 +45,12 @@ jobs:
         text=$(echo $(cat terraform/secrets.tfvars))
         IFS=' ' read -r -a test_array <<< "$text"
         echo "${test_array[@]}"
-        array=$(cat terraform/secrets.tfvars)
+        # array=$(cat terraform/secrets.tfvars)
         # echo "straight"
         # echo $(${{ secrets.TF_vars }})
-        echo "array"
-        echo $array
-        for i in "${array[@]}"; do
+        # echo "array"
+        # echo $array
+        for i in "${test_array[@]}"; do
             echo $i
             echo "here"
         done
