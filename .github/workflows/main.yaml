@@ -49,7 +49,7 @@ jobs:
         do
             if [[ "$i" == *"\\"* ]]; then
               echo "Its there!"
-              searchstring="\"
+              searchstring="\\"
               rest=${i#*$searchstring}
               echo $(( ${#i} - ${#rest} - ${#searchstring} ))
             fi
