@@ -52,7 +52,9 @@ jobs:
               # searchstring="\\"
               # rest=${i#*$searchstring}
               # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
-              anna=$(echo "${test_array[$i]}" | sed 's/[][{}()~,]/\\&/g')
+              echo "hello\world\hello\world" | sed 's/\\/\\\\/g'
+              anna=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
+              # anna=$(echo "${test_array[$i]}" | sed 's/[][{}()~,]/\\&/g')
               echo "anna"
               echo $anna
               will=$(echo "${test_array[$i]}" | tr w q)
