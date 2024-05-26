@@ -52,7 +52,7 @@ jobs:
               # searchstring="\\"
               # rest=${i#*$searchstring}
               # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
-              anna=$(echo "${test_array[$i]}" | tr / //)
+              anna=$(echo "${test_array[$i]}" | tr // ///)
               echo "anna"
               echo $anna
               will=$(echo "${test_array[$i]}" | tr w q)
