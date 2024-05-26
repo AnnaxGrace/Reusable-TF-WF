@@ -40,36 +40,36 @@ jobs:
         EOF
       working-directory: terraform
 
-    - name: 'Test array'
-      run: |
-        text="here=there whee=were\w party=disco"
-        IFS=' ' read -r -a test_array <<< "$text"
-        echo "${test_array[@]}"
-        for i in "${!test_array[@]}"; 
-        do
-            if [[ "${test_array[$i]}" == *"\\"* ]]; then
-              echo "Its there!"
-              # searchstring="\\"
-              # rest=${i#*$searchstring}
-              # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
-              echo "hello\world\hello\world" | sed 's/\\/\\\\/g'
-              anna=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
-              # anna=$(echo "${test_array[$i]}" | sed 's/[][{}()~,]/\\&/g')
-              echo "anna"
-              echo $anna
-              will=$(echo "${test_array[$i]}" | tr w q)
-              echo "will"
-              echo $will
-              echo "one"
-              bar=${i// //}
-              echo "two"
-              echo $bar
-              echo "three"
-              ${test_array[$i]}=$bar
-            fi
-            echo "array after"
-            echo test_array
-        done
+    # - name: 'Test array'
+    #   run: |
+    #     text="here=there whee=were\w party=disco"
+    #     IFS=' ' read -r -a test_array <<< "$text"
+    #     echo "${test_array[@]}"
+    #     for i in "${!test_array[@]}"; 
+    #     do
+    #         if [[ "${test_array[$i]}" == *"\\"* ]]; then
+    #           echo "Its there!"
+    #           # searchstring="\\"
+    #           # rest=${i#*$searchstring}
+    #           # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
+    #           echo "hello\world\hello\world" | sed 's/\\/\\\\/g'
+    #           anna=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
+    #           # anna=$(echo "${test_array[$i]}" | sed 's/[][{}()~,]/\\&/g')
+    #           echo "anna"
+    #           echo $anna
+    #           will=$(echo "${test_array[$i]}" | tr w q)
+    #           echo "will"
+    #           echo $will
+    #           echo "one"
+    #           bar=${i// //}
+    #           echo "two"
+    #           echo $bar
+    #           echo "three"
+    #           ${test_array[$i]}=$bar
+    #         fi
+    #         echo "array after"
+    #         echo test_array
+    #     done
 
     - name: 'Test secrets.tfvars'
       run: |
@@ -83,7 +83,8 @@ jobs:
               # searchstring="\\"
               # rest=${i#*$searchstring}
               # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
-              bar=${i// //}
+              bar=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
+              # bar=${i// //}
               echo $bar
               test_array[$i]=$bar
             fi
