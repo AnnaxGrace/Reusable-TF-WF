@@ -52,8 +52,11 @@ jobs:
               # searchstring="\\"
               # rest=${i#*$searchstring}
               # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
+              echo "one"
               bar=${i// //}
+              echo "two"
               echo $bar
+              echo "three"
               ${test_array[$i]}=$bar
             fi
             echo "array after"
