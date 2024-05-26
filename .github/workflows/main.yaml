@@ -47,17 +47,17 @@ jobs:
         echo "${test_array[@]}"
         for i in "${!test_array[@]}"; 
         do
-            if [[ "test_array[$i]" == *"\\"* ]]; then
+            if [[ "${test_array[$i]}" == *"\\"* ]]; then
               echo "Its there!"
               # searchstring="\\"
               # rest=${i#*$searchstring}
               # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
               bar=${i// //}
               echo $bar
-              test_array[$i]=$bar
+              ${test_array[$i]}=$bar
             fi
-            echo test_array[$i]
-            echo "here"
+            echo "array after"
+            echo test_array
         done
 
     - name: 'Test secrets.tfvars'
