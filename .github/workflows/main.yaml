@@ -91,6 +91,9 @@ jobs:
             echo test_array[$i]
             echo "here"
         done
+        cat > secrets.tfvars << EOF
+        "${test_array[@]}"
+        EOF
 
     # - uses: actions/upload-artifact@v4
     #   with:
