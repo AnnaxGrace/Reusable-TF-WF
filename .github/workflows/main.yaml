@@ -56,7 +56,7 @@ jobs:
               echo "before single"
               echo ${test_array[$i]}
               echo "after single"
-              ${test_array[$i]}="$anna"
+              test_array[$i]="$anna"
               echo ${test_array[$i]}
             fi
             echo "array after"
