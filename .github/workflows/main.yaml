@@ -32,13 +32,13 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: 'Create Terraform Secrets tfvars File'
-      run: |
-        touch secrets.tfvars
-        cat > secrets.tfvars << EOF
-        ${{ secrets.TF_vars }}
-        EOF
-      working-directory: terraform
+    # - name: 'Create Terraform Secrets tfvars File'
+    #   run: |
+    #     touch secrets.tfvars
+    #     cat > secrets.tfvars << EOF
+    #     ${{ secrets.TF_vars }}
+    #     EOF
+    #   working-directory: terraform
 
     # - name: 'Test array'
     #   run: |
