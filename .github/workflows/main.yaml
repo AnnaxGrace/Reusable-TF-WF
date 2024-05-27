@@ -60,8 +60,9 @@ jobs:
               echo ${test_array[$i]}
             fi
             echo "array after"
-            echo test_array
         done
+        echo "array after"
+        ${test_array[@]}
 
     - name: 'Test secrets.tfvars'
       run: |
