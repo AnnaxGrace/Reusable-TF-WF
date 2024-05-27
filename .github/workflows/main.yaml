@@ -65,7 +65,7 @@ jobs:
               echo "two"
               echo $bar
               echo "three"
-              ${test_array[$i]}=$will
+              ${test_array[$i]}=$anna
             fi
             echo "array after"
             echo test_array
