@@ -79,6 +79,9 @@ jobs:
         cat > secrets.tfvars << EOF
         "${test_array[@]}"
         EOF
+        cat > secrets.tfvars << EOF
+        test
+        EOF
 
     # - uses: actions/upload-artifact@v4
     #   with:
