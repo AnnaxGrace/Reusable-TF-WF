@@ -49,23 +49,15 @@ jobs:
         do
             if [[ "${test_array[$i]}" == *"\\"* ]]; then
               echo "Its there!"
-              # searchstring="\\"
-              # rest=${i#*$searchstring}
-              # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
-              echo "hello\world\hello\world" | sed 's/\\/\\\\/g'
               anna=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
-              # anna=$(echo "${test_array[$i]}" | sed 's/[][{}()~,]/\\&/g')
               echo "anna"
               echo $anna
-              will=$(echo "${test_array[$i]}" | tr w q)
-              echo "will"
-              echo $will
               echo "one"
-              bar=${i// //}
-              echo "two"
-              echo $bar
-              echo "three"
+              echo "before single"
+              echo ${test_array[$i]}
+              echo "after single"
               ${test_array[$i]}=$anna
+              echo ${test_array[$i]}
             fi
             echo "array after"
             echo test_array
