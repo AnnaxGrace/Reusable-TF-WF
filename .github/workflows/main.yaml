@@ -66,7 +66,7 @@ jobs:
     - name: 'Test secrets.tfvars'
       run: |
         # text=$(echo $(cat terraform/secrets.tfvars))
-        text=$(sed 's/.*/"&"/' databases.txt | paste -sd' ' -)
+        text=$(sed 's/.*/"&"/' ${{ secrets.TF_vars }} | paste -sd' ' -)
         echo "$text"
         echo $text
         IFS=' ' read -r -a test_array <<< "$text"
