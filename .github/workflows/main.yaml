@@ -59,10 +59,9 @@ jobs:
               test_array[$i]="$anna"
               echo ${test_array[$i]}
             fi
-            echo "array after"
         done
         echo "array after"
-        ${test_array[@]}
+        echo "${test_array[@]}"
 
     - name: 'Test secrets.tfvars'
       run: |
