@@ -72,16 +72,9 @@ jobs:
         do
             if [[ "test_array[$i]" == *"\\"* ]]; then
               echo "Its there!"
-              # searchstring="\\"
-              # rest=${i#*$searchstring}
-              # echo $(( ${#i} - ${#rest} - ${#searchstring} ))
-              bar=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
-              # bar=${i// //}
-              echo $bar
-              test_array[$i]=$bar
+              DOUBLE_ESCAPE_STRING=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
+              test_array[$i]="$DOUBLE_ESCAPE_STRING"
             fi
-            echo test_array[$i]
-            echo "here"
         done
         cat > secrets.tfvars << EOF
         "${test_array[@]}"
