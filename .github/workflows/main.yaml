@@ -40,32 +40,35 @@ jobs:
         EOF
       working-directory: terraform
 
-    - name: 'Test array'
-      run: |
-        text="here=there whee=were\w party=disco"
-        IFS=' ' read -r -a test_array <<< "$text"
-        echo "${test_array[@]}"
-        for i in "${!test_array[@]}"; 
-        do
-            if [[ "${test_array[$i]}" == *"\\"* ]]; then
-              echo "Its there!"
-              anna=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
-              echo "anna"
-              echo $anna
-              echo "one"
-              echo "before single"
-              echo ${test_array[$i]}
-              echo "after single"
-              test_array[$i]="$anna"
-              echo ${test_array[$i]}
-            fi
-        done
-        echo "array after"
-        echo "${test_array[@]}"
+    # - name: 'Test array'
+    #   run: |
+    #     text="here=there whee=were\w party=disco"
+    #     IFS=' ' read -r -a test_array <<< "$text"
+    #     echo "${test_array[@]}"
+    #     for i in "${!test_array[@]}"; 
+    #     do
+    #         if [[ "${test_array[$i]}" == *"\\"* ]]; then
+    #           echo "Its there!"
+    #           anna=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
+    #           echo "anna"
+    #           echo $anna
+    #           echo "one"
+    #           echo "before single"
+    #           echo ${test_array[$i]}
+    #           echo "after single"
+    #           test_array[$i]="$anna"
+    #           echo ${test_array[$i]}
+    #         fi
+    #     done
+    #     echo "array after"
+    #     echo "${test_array[@]}"
 
     - name: 'Test secrets.tfvars'
       run: |
-        text=$(echo $(cat terraform/secrets.tfvars))
+        # text=$(echo $(cat terraform/secrets.tfvars))
+        text=$(sed 's/.*/"&"/' databases.txt | paste -sd' ' -)
+        echo "$text"
+        echo $text
         IFS=' ' read -r -a test_array <<< "$text"
         echo "${test_array[@]}"
         for i in "${!test_array[@]}"; 
