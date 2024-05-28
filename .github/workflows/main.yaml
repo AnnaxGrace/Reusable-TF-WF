@@ -78,7 +78,9 @@ jobs:
               test_array[$i]="$DOUBLE_ESCAPE_STRING"
             fi
         done
-        var=$( IFS=$' '; echo "${test_array[*]}" )
+        var=$(printf "%s\n"  "${test_array[@]}")
+
+        # var=$( IFS=$' '; echo "${test_array[*]}" )
         touch secrets.tfvars
         echo "var"
         echo $var
