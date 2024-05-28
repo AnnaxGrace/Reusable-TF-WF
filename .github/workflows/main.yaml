@@ -32,13 +32,13 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    # - name: 'Create Terraform Secrets tfvars File'
-    #   run: |
-    #     touch secrets.tfvars
-    #     cat > secrets.tfvars << EOF
-    #     ${{ secrets.TF_vars }}
-    #     EOF
-    #   working-directory: terraform
+    - name: 'Create Terraform Secrets tfvars File'
+      run: |
+        touch secrets.tfvars
+        cat > secrets.tfvars << EOF
+        ${{ secrets.TF_vars }}
+        EOF
+      working-directory: terraform
 
     # - name: 'Test array'
     #   run: |
@@ -63,32 +63,32 @@ jobs:
     #     echo "array after"
     #     echo "${test_array[@]}"
 
-    - name: 'Test secrets.tfvars'
-      run: |
-        text=$(echo '${{ secrets.TF_vars }}' | sed 's/.*/"&"/' | paste -sd' ' -)
-        echo "$text"
-        # echo $text
-        IFS=' ' read -r -a test_array <<< "$text"
-        echo "${test_array[@]}"
-        for i in "${!test_array[@]}"; 
-        do
-            if [[ "test_array[$i]" == *"\\"* ]]; then
-              echo "Its there!"
-              DOUBLE_ESCAPE_STRING=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
-              test_array[$i]="$DOUBLE_ESCAPE_STRING"
-            fi
-        done
-        var=$(printf "%s\n"  ${test_array[@]//\"/})
-        # echo ${vector[index]//\"/}
+    # - name: 'Test secrets.tfvars'
+    #   run: |
+    #     text=$(echo '${{ secrets.TF_vars }}' | sed 's/.*/"&"/' | paste -sd' ' -)
+    #     echo "$text"
+    #     # echo $text
+    #     IFS=' ' read -r -a test_array <<< "$text"
+    #     echo "${test_array[@]}"
+    #     for i in "${!test_array[@]}"; 
+    #     do
+    #         if [[ "test_array[$i]" == *"\\"* ]]; then
+    #           echo "Its there!"
+    #           DOUBLE_ESCAPE_STRING=$(echo "${test_array[$i]}" | sed 's/\\/\\\\/g')
+    #           test_array[$i]="$DOUBLE_ESCAPE_STRING"
+    #         fi
+    #     done
+    #     var=$(printf "%s\n"  ${test_array[@]//\"/})
+    #     # echo ${vector[index]//\"/}
 
-        # var=$( IFS=$' '; echo "${test_array[*]}" )
-        touch secrets.tfvars
-        echo "var"
-        echo $var
-        cat > secrets.tfvars << EOF
-        '${{ secrets.TF_vars }}'
-        EOF
-      working-directory: terraform
+    #     # var=$( IFS=$' '; echo "${test_array[*]}" )
+    #     touch secrets.tfvars
+    #     echo "var"
+    #     echo $var
+    #     cat > secrets.tfvars << EOF
+    #     '${{ secrets.TF_vars }}'
+    #     EOF
+    #   working-directory: terraform
 
 
     # - uses: actions/upload-artifact@v4
