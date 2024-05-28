@@ -82,9 +82,9 @@ jobs:
         cat > secrets.tfvars << EOF
         "${test_array[@]}"
         EOF
-        cat > secrets.tfvars << EOF
-        test
-        EOF
+        # cat > secrets.tfvars << EOF
+        # test
+        # EOF
       working-directory: terraform
 
 
