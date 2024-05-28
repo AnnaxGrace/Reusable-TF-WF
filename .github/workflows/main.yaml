@@ -36,7 +36,7 @@ jobs:
       run: |
         touch secrets.tfvars
         cat > secrets.tfvars << EOF
-        '${{ secrets.TF_vars }}'
+        "${{ secrets.TF_vars }}"
         EOF
       working-directory: terraform
 
