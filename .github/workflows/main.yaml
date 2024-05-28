@@ -86,7 +86,7 @@ jobs:
         echo "var"
         echo $var
         cat > secrets.tfvars << EOF
-        $var
+        '${{ secrets.TF_vars }}'
         EOF
       working-directory: terraform
 
