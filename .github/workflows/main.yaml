@@ -80,12 +80,11 @@ jobs:
         done
         var=$( IFS=$' '; echo "${test_array[*]}" )
         touch secrets.tfvars
+        echo "var"
+        echo $var
         cat > secrets.tfvars << EOF
-        "$var"
+        $var
         EOF
-        # cat > secrets.tfvars << EOF
-        # test
-        # EOF
       working-directory: terraform
 
 
