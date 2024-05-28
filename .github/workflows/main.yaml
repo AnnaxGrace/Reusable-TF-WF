@@ -78,9 +78,10 @@ jobs:
               test_array[$i]="$DOUBLE_ESCAPE_STRING"
             fi
         done
+        var=$( IFS=$' '; echo "${test_array[*]}" )
         touch secrets.tfvars
         cat > secrets.tfvars << EOF
-        "${test_array[@]}"
+        "$var"
         EOF
         # cat > secrets.tfvars << EOF
         # test
