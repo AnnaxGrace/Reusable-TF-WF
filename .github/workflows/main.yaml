@@ -99,9 +99,11 @@ jobs:
     - name: 'Plan Run'
       run: |
         terraform init
-        terraform plan -input=false -var-file=./secrets.tfvars
+        # terraform plan -input=false -var-file=./secrets.tfvars
         # terraform plan -input=false 
       working-directory: terraform
+      env:
+          ${{ secrets.TF_vars }}
 
     # - name: 'Apply Run'
     #   run: |
