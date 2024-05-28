@@ -85,7 +85,7 @@ jobs:
         cat > secrets.tfvars << EOF
         test
         EOF
-    working-directory: terraform
+      working-directory: terraform
 
 
     # - uses: actions/upload-artifact@v4
