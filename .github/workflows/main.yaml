@@ -116,6 +116,7 @@ jobs:
     - name: 'Apply Run'
       id: terraform-apply
       run: |
+        terraform init
         terraform apply -auto-approve -input=false ${{ secrets.TF_vars }}
         terraform output > file.txt
         # text=$(echo ./file.txt | sed 's/.*/"&"/' | paste -sd' ' -)
