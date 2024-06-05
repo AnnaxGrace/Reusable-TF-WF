@@ -120,5 +120,5 @@ jobs:
         terraform output > file.txt
         text=$(echo ./file.txt | sed 's/.*/"&"/' | paste -sd' ' -)
         echo $text
-        echo "terraform_outputs=$text" >> "$GITHUB_OUTPUT
+        echo "terraform_outputs=$text" >> "$GITHUB_OUTPUT"
       working-directory: terraform
