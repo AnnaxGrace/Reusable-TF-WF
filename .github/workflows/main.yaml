@@ -125,5 +125,5 @@ jobs:
         echo "here"
         text=$(grep pattern file.txt | tr '\n' ' ')
         echo $text
-        echo "terraform_outputs=$text" >> "$GITHUB_OUTPUT"
+        echo "terraform_outputs=$whee" >> "$GITHUB_OUTPUT"
       working-directory: terraform
