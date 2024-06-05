@@ -119,7 +119,8 @@ jobs:
         terraform apply -auto-approve -input=false ${{ secrets.TF_vars }}
         terraform output > file.txt
         # text=$(echo ./file.txt | sed 's/.*/"&"/' | paste -sd' ' -)
-        text=$(grep pattern ./file.txt | tr '\n' ' ')
+        echo "here"
+        text=$(grep pattern file.txt | tr '\n' ' ')
         echo $text
         echo "terraform_outputs=$text" >> "$GITHUB_OUTPUT"
       working-directory: terraform
