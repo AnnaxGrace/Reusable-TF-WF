@@ -11,6 +11,10 @@ on:
                 required: true
             AZURE_SUBSCRIPTION_ID:
                 required: true
+        outputs:
+            OUTPUTS_STRING:
+                description: 'A string of all created outputs'
+                value: ${{ jobs.run-tf.outputs.TERRAFORM_OUTPUTS }}
 
 
 permissions:
@@ -20,6 +24,8 @@ permissions:
 jobs:
   run-tf:
     runs-on: ubuntu-latest
+    outputs:
+        TERRAFORM_OUTPUTS: ${{ steps.terraform-apply.outputs.terraform_outputs }}
 
     steps: 
 
@@ -105,10 +111,14 @@ jobs:
         # with string
         terraform plan -input=false ${{ secrets.TF_vars }}
       working-directory: terraform
-      # env:
-      #     ${{ secrets.TF_vars }}
+  
 
-    # - name: 'Apply Run'
-    #   run: |
-    #     terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
-    #   working-directory: terraform
+    - name: 'Apply Run'
+      id: terraform-apply
+      run: |
+        terraform apply -auto-approve -input=false ${{ secrets.TF_vars }}
+        terraform output > file.txt
+        text=$(echo ./file.txt | sed 's/.*/"&"/' | paste -sd' ' -)
+        echo $text
+        echo "terraform_outputs=$text" >> "$GITHUB_OUTPUT
+      working-directory: terraform
