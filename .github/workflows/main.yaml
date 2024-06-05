@@ -127,3 +127,7 @@ jobs:
         echo $text
         echo "terraform_outputs=$whee" >> "$GITHUB_OUTPUT"
       working-directory: terraform
+
+    - name: 'Test output'
+      run: |
+       echo ${{ steps.terraform-apply.outputs.terraform_outputs }}
